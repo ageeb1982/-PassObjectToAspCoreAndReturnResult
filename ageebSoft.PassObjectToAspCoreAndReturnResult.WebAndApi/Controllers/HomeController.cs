@@ -15,6 +15,47 @@ namespace ageebSoft.PassObjectToAspCoreAndReturnResult.WebAndApi.Controllers
             return View();
         }
 
+
+
+
+        private List<Person> People = new List<Person>
+        {
+            new Person{Id=1,Name="Mohamed ageeb",Gender=Gender.Male},
+            new Person{Id=2,Name="AbuBaker Saleh",Gender=Gender.Male},
+            new Person{Id=3,Name="Omer Altyeb",Gender=Gender.Male},
+            new Person{Id=4,Name="Osman Mobark",Gender=Gender.Male},
+            new Person{Id=5,Name="Ali Jubara",Gender=Gender.Male},
+            new Person{Id=6,Name="Abdullah Rabee",Gender=Gender.Male},
+            new Person{Id=7,Name="AbduRahman Khaled",Gender=Gender.Male},
+            new Person{Id=8,Name="AlHarih Amjad",Gender=Gender.Male},
+            new Person{Id=9,Name="Mansor Omda",Gender=Gender.Male},
+            new Person{Id=10,Name="Khaled Zuhir",Gender=Gender.Male},
+
+        };
+
+        public Person GetPerson(int Id)
+        {
+            return People.FirstOrDefault(x => x.Id == Id);
+        }
+
+        public List<Person> GetSrchName(string Name)
+        {
+            return People.Where(x => x.Name.Contains(Name,StringComparison.OrdinalIgnoreCase)).ToList();
+
+        }
+        public List<Person> GetSrchSalary(double Salary)
+        {
+            return People.Where(x => x.Salary == Salary).ToList();
+
+        }  
+        public List<Person> GetSrchTwoSalary(double Salary1,double Salary2)
+        {
+            return People.Where(x => x.Salary == Salary1).ToList();
+
+        }
+
+
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
